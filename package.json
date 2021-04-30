@@ -1,0 +1,29 @@
+{
+  "name": "nodejs-mongo-rest-api",
+  "version": "1.0.0",
+  "description": "NodeJS based rest service application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xbersoy/nodejs-mongo-rest-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "node",
+    "expressjs",
+    "express",
+    "mongo",
+    "mongoose",
+    "restful",
+    "rest"
+  ],
+  "author": "xbersoy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xbersoy/nodejs-mongo-rest-api/issues"
+  },
+  "homepage": "https://github.com/xbersoy/nodejs-mongo-rest-api#readme"
+}
