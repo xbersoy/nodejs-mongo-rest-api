@@ -1,5 +1,5 @@
+const db = require('./loaders/database.js');
 const express = require('express');
-const mongoose = require('mongoose');
 require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,27 +10,27 @@ app.use(express.urlencoded({extended: true}));
 // Route imports 
 const recordsRoute = require('./routes/records.js');
 const notFoundRoute = require('./routes/notFound.js');
+const swaggerRoutes = require('./routes/swagger.js');
 
 app.use('/records', recordsRoute);
-app.use((err, req, res, next) => {
-    const status = err.getStatusCode ? err.getStatusCode() : 500
-    return res.status(status).json({
-        code: false,
-        msg: err.message
-    });
-  });
+app.use(swaggerRoutes);
 app.use(notFoundRoute);
-
-mongoose.connect(process.env.DB_CONNECTION_STRING, {useNewUrlParser: true, useUnifiedTopology: true});
-
-mongoose.connection.on('connected', (client) => {
-  console.log('Connected to MongoDB');
+app.use((err, req, res, next) => {
+  const status = err.getStatusCode ? err.getStatusCode() : 500
+  return res.status(status).json({
+      code: 3,
+      msg: err.message
+  });
 });
 
-mongoose.connection.on('error', () => {
-  throw new Error('Unable to connect to MongoDB.');
+// create server after DB connection provided
+app.on('db_connected', () => {
+  app.listen(process.env.PORT, () => {
+    app.emit('up');
+    console.log('listening on specified port');
+  });
 });
 
-app.listen(port, () => console.log(`listening on ${port}`));
+db.connect({expressApp: app});
 
 module.exports = app;
