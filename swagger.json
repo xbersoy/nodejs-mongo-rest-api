@@ -1,0 +1,151 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "NodeJS-Mongo Rest API",
+      "description": "<img src=\"https://pbs.twimg.com/profile_images/971850003152015363/9kTGLeYM.jpg\" width=\"128\" height=\"128\" ></br>",
+      "version": "1.0.0",
+      "contact": {
+        "name": "Source Code",
+        "url": "https://github.com/xbersoy/nodejs-mongo-rest-api"
+      }
+    },
+    "servers": [
+      {
+        "url": "http://ec2-3-141-198-45.us-east-2.compute.amazonaws.com:8080/"
+      }
+    ],
+    "paths": {
+      "/records": {
+        "post": {
+          "tags": [
+            "Records"
+          ],
+          "summary": "Fetches records from DB with given parameters in request payload",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "startDate": {
+                      "type": "string"
+                    },
+                    "endDate": {
+                      "type": "string"
+                    },
+                    "minCount": {
+                      "type": "integer"
+                    },
+                    "maxCount": {
+                      "type": "integer"
+                    }
+                  },
+                  "example": {
+                    "startDate": "2016-01-26",
+                    "endDate": "2016-02-02",
+                    "minCount": 2700,
+                    "maxCount": 3000
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "number",
+                        "example": 0
+                      },
+                      "msg": {
+                        "type": "string",
+                        "example": "Success"
+                      },
+                      "records": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "example": "bxoQiSKL"
+                            },
+                            "createdAt": {
+                              "type": "string",
+                              "example": "2016-01-29T01:59:53.494Z"
+                            },
+                            "totalCount": {
+                              "type": "number",
+                              "example": 2991
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "SuccessfulResponseWithoutData": {
+          "type": "object",
+          "title": "Successful Response",
+          "properties": {
+            "msg": {
+              "type": "string",
+              "default": true,
+              "example": "Success"
+            },
+            "code": {
+              "type": "number",
+              "example": 0
+            }
+          },
+          "required": [
+            "returnCode"
+          ]
+        },
+        "Error": {
+          "type": "object",
+          "title": "Error Response",
+          "properties": {
+            "code": {
+              "type": "boolean",
+              "default": false,
+              "example": 2
+            },
+            "msg": {
+              "type": "string",
+              "example": "Invalid parameters"
+            },
+            "details": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string",
+                    "example": "Error in a query parameter"
+                  },
+                  "param": {
+                    "type": "string",
+                    "example": "longitude"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
