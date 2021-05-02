@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "watch": "nodemon index.js"
+    "watch": "nodemon index.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -31,9 +32,11 @@
     "@joi/date": "^2.1.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-validator": "^6.10.1",
     "joi": "^17.4.0",
     "mongoose": "^5.12.7",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "chai": "^4.3.4",
