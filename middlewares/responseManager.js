@@ -1,4 +1,4 @@
-const {GeneralError} = require('../util/errorTypes');
+const {GeneralError, NotFound} = require('../util/errorTypes');
 
 module.exports.async = (req, res, next, promise) => {
   promise
@@ -36,6 +36,12 @@ module.exports.nonAsync = (req, res, next, fn) => {
     if (err instanceof GeneralError) {
       return res.status(err.getStatusCode()).json({
         code: 1,
+        msg: err.message
+      });
+    }
+    if (err instanceof NotFound) {
+      return res.status(err.getStatusCode()).json({
+        code: 3,
         msg: err.message
       });
     }
