@@ -104,3 +104,163 @@ Successful Response Payload
     ]
 }
 ```
+<br>
+
+Invalid Request Payload - 1 <br>
+
+```bash
+{
+"startDate": "2016-01-26",
+"endDate": "2016-02-02",
+"minCount": "2700",
+"maxCount": 3000
+}
+```
+
+Error Response Payload - 1
+
+```bash
+{
+    "code": 2,
+    "msg": "Validation error - Invalid request parameters.",
+    "details": [
+        {
+            "message": "minCount should be a number, not a string",
+            "param": "minCount"
+        }
+    ]
+}
+```
+<br>
+
+Invalid Request Payload - 2 <br>
+
+```bash
+{
+"startDate": "2016-01-26",
+"endDate": "2016-02-02",
+"minCount": "",
+"maxCount": 3000
+}
+```
+
+Error Response Payload - 2
+
+```bash
+{
+    "code": 2,
+    "msg": "Validation error - Invalid request parameters.",
+    "details": [
+        {
+            "message": "minCount can not be empty!",
+            "param": "minCount"
+        }
+    ]
+}
+```
+<br>
+
+Invalid Request Payload - 3 <br>
+
+```bash
+{
+"startDate": "2016-01-26",
+"endDate": "2016-02-02",
+"minCount": 3200,
+"maxCount": 3000
+}
+```
+
+Error Response Payload - 3
+
+```bash
+{
+    "code": 2,
+    "msg": "Validation error - Invalid request parameters.",
+    "details": [
+        {
+            "message": "minCount should be greater than maxCount",
+            "param": "minCount"
+        },
+        {
+            "message": "maxCount should be greater than minCount",
+            "param": "maxCount"
+        }
+    ]
+}
+```
+<br>
+
+Invalid Request Payload - 4 <br>
+
+```bash
+{
+"startDate": "2016-05asd-26",
+"endDate": "2016-02-02",
+"minCount": 2700,
+"maxCount": 3000
+}
+```
+
+Error Response Payload - 4
+
+```bash
+{
+    "code": 2,
+    "msg": "Validation error - Invalid request parameters.",
+    "details": [
+        {
+            "message": "startDate must be a valid date",
+            "param": "startDate"
+        }
+    ]
+}
+```
+
+<br>
+
+Invalid Request Payload - 5 <br>
+
+```bash
+{
+"startDate": "2016-05-26",
+"endDate": "2016-02-02",
+"minCount": 2700,
+"maxCount": 3000
+}
+```
+
+Error Response Payload - 5
+
+```bash
+{
+    "code": 2,
+    "msg": "Validation error - Invalid request parameters.",
+    "details": [
+        {
+            "message": "startDate should be less than endDate",
+            "param": "startDate"
+        }
+    ]
+}
+```
+
+
+<br>
+
+Invalid endpoint sample - 6 <br>
+URL : localhost:3000/test
+```bash
+{
+
+}
+```
+
+Invaild endpoint response payload - 6
+
+```bash
+{
+    "code": 3,
+    "msg": "Route does not exist"
+}
+```
