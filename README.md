@@ -75,15 +75,18 @@ Returns data from MongoDB with parameters given in request body.
 
 With curl
 ```bash
-curl  -X POST 
-      -H "Content-Type: application/json" \
-      -d '{"startDate": "2016-01-26", "endDate": "2016-02-02", "minCount": 2700, "maxCount": 3000}' \
-      http://ec2-3-141-198-45.us-east-2.compute.amazonaws.com:8080/records
+curl -X POST -H "Content-Type: application/json"     -d '{
+"startDate": "2016-01-26",
+"endDate": "2016-02-02",
+"minCount": 2700,
+"maxCount": 3000
+}'     http://ec2-3-141-198-45.us-east-2.compute.amazonaws.com:8080/records
 ```
 
 <br>
 
 (With tools like Postman)
+<br>
 Sample Request Payload <br>
 ```bash
 {
