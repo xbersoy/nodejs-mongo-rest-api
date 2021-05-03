@@ -68,7 +68,7 @@ More tests can be added<br>
 
 ### POST /records
 
-URL: http://ec2-3-141-198-45.us-east-2.compute.amazonaws.com:8080/records
+URL: http://ec2-3-141-198-45.us-east-2.compute.amazonaws.com:8080/records (Only post request handled.)
 
 Returns data from MongoDB with parameters given in request body.
 <br><br>
